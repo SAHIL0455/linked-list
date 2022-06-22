@@ -17,9 +17,13 @@ public class LinkedList<E> {
         linkedList.search(30);
         linkedList.searchAndInsert(40,41);
         linkedList.printList();
+        linkedList.searchDelete(40);
+        linkedList.printList();
+        linkedList.sizeLinkedList();
     }
 
     MyNode<E> head;
+    int size = 0;
 
     public void addElement(E key) {
         MyNode myNode = new MyNode(key);
@@ -29,6 +33,7 @@ public class LinkedList<E> {
             myNode.next = head;
             head = myNode;
         }
+        size++;
     }
 
     public void addLastElement(E key) {
@@ -38,12 +43,14 @@ public class LinkedList<E> {
         }
         MyNode myNode = new MyNode(key);
         cureentNode.next = myNode;
+        size++;
     }
 
     public void deleteFirst() {
         if (head == null) {
             System.out.println("Linklist is Empty ");
         } else {
+            size--;
             head = head.next;
         }
     }
@@ -51,7 +58,10 @@ public class LinkedList<E> {
     public void deleteLast() {
         if (head == null) {
             System.out.println("Linklist is Empty ");
-        } else if (head.next == null) {
+            return;
+        }
+        size--;
+        if (head.next == null) {
             head = null;
         } else {
             MyNode secondlast = head;
@@ -72,6 +82,7 @@ public class LinkedList<E> {
         MyNode myNode = new MyNode(key);
         myNode.next = currentNode.next;
         currentNode.next = myNode;
+        size++;
     }
 
     public void search(E key) {
@@ -90,6 +101,17 @@ public class LinkedList<E> {
         MyNode myNode = new MyNode(insertElement);
         myNode.next = cureentNode.next;
         cureentNode.next = myNode;
+        size++;
+    }
+    public void searchDelete(E key){
+        MyNode secondLastNode = head;
+        MyNode lastNode = head.next;
+        while (lastNode.key != key){
+            lastNode = lastNode.next;
+            secondLastNode = secondLastNode.next;
+        }
+        secondLastNode.next = lastNode.next;
+        size--;
     }
 
     public void printList() {
@@ -99,5 +121,8 @@ public class LinkedList<E> {
             cureentNode = cureentNode.next;
         }
         System.out.println("NUll");
+    }
+    public void sizeLinkedList(){
+        System.out.println(size);
     }
 }
