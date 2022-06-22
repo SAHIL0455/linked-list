@@ -1,5 +1,4 @@
 package com.bridgelab;
-
 public class LinkedList<E> {
     public static void main(String[] args) {
         System.out.println("Welcome to Linked List Problems");
@@ -14,6 +13,8 @@ public class LinkedList<E> {
         linkedList.deleteFirst();
         linkedList.printList();
         linkedList.deleteLast();
+        linkedList.printList();
+        linkedList.insertElementAtPosition(2,55);
         linkedList.printList();
     }
 
@@ -54,12 +55,22 @@ public class LinkedList<E> {
         } else {
             MyNode secondlast = head;
             MyNode lastNode = head.next;
-            while (lastNode != null) {
+            while (lastNode.next != null) {
                 lastNode = lastNode.next;
                 secondlast = secondlast.next;
             }
             secondlast.next = null;
         }
+    }
+
+    public void insertElementAtPosition(Integer position,E key){
+        MyNode currentNode = head;
+        for (Integer i = 0; i<(position-1);i++){
+            currentNode = currentNode.next;
+        }
+        MyNode myNode = new MyNode(key);
+        myNode.next = currentNode.next;
+        currentNode.next = myNode;
     }
 
     public void printList() {
