@@ -13,6 +13,8 @@ public class LinkedList<E> {
         linkedList.printList();
         linkedList.deleteFirst();
         linkedList.printList();
+        linkedList.deleteLast();
+        linkedList.printList();
     }
 
     MyNode<E> head;
@@ -41,6 +43,22 @@ public class LinkedList<E> {
             System.out.println("Linklist is Empty ");
         } else {
             head = head.next;
+        }
+    }
+
+    public void deleteLast() {
+        if (head == null) {
+            System.out.println("Linklist is Empty ");
+        } else if (head.next == null) {
+            head = null;
+        } else {
+            MyNode secondlast = head;
+            MyNode lastNode = head.next;
+            while (lastNode != null) {
+                lastNode = lastNode.next;
+                secondlast = secondlast.next;
+            }
+            secondlast.next = null;
         }
     }
 
