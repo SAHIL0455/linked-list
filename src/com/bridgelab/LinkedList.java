@@ -8,17 +8,27 @@ public class LinkedList<E> {
         linkedList.addElement(30);
         linkedList.addElement(56);
         linkedList.printList();
+        linkedList.addLastElement(52);
+        linkedList.addLastElement(53);
+        linkedList.printList();
     }
     MyNode<E> head;
     public void addElement(E key) {
         MyNode myNode = new MyNode(key);
-        myNode.key = key;
         if (head == null) {
             head = myNode;
         }else {
             myNode.next = head;
             head = myNode;
         }
+    }
+    public void addLastElement(E key){
+        MyNode cureentNode = head;
+        while (cureentNode.next != null){
+            cureentNode = cureentNode.next;
+        }
+        MyNode myNode = new MyNode(key);
+        cureentNode.next = myNode;
     }
 
     public void printList(){
