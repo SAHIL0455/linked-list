@@ -15,6 +15,8 @@ public class LinkedList<E> {
         linkedList.insertElementAtPosition(2,40);
         linkedList.printList();
         linkedList.search(30);
+        linkedList.searchAndInsert(40,41);
+        linkedList.printList();
     }
 
     MyNode<E> head;
@@ -78,6 +80,16 @@ public class LinkedList<E> {
             cureentNode = cureentNode.next;
         }
         System.out.println(cureentNode.key + " Element is found in linkedList");
+    }
+
+    public void searchAndInsert(E key, E insertElement){
+        MyNode cureentNode = head;
+        while (cureentNode.key != key) {
+            cureentNode = cureentNode.next;
+        }
+        MyNode myNode = new MyNode(insertElement);
+        myNode.next = cureentNode.next;
+        cureentNode.next = myNode;
     }
 
     public void printList() {
