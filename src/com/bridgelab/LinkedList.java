@@ -11,30 +11,43 @@ public class LinkedList<E> {
         linkedList.addLastElement(52);
         linkedList.addLastElement(53);
         linkedList.printList();
+        linkedList.deleteFirst();
+        linkedList.printList();
     }
+
     MyNode<E> head;
+
     public void addElement(E key) {
         MyNode myNode = new MyNode(key);
         if (head == null) {
             head = myNode;
-        }else {
+        } else {
             myNode.next = head;
             head = myNode;
         }
     }
-    public void addLastElement(E key){
+
+    public void addLastElement(E key) {
         MyNode cureentNode = head;
-        while (cureentNode.next != null){
+        while (cureentNode.next != null) {
             cureentNode = cureentNode.next;
         }
         MyNode myNode = new MyNode(key);
         cureentNode.next = myNode;
     }
 
-    public void printList(){
+    public void deleteFirst() {
+        if (head == null) {
+            System.out.println("Linklist is Empty ");
+        } else {
+            head = head.next;
+        }
+    }
+
+    public void printList() {
         MyNode cureentNode = head;
-        while (cureentNode != null){
-            System.out.print(cureentNode.key +" -> ");
+        while (cureentNode != null) {
+            System.out.print(cureentNode.key + " -> ");
             cureentNode = cureentNode.next;
         }
         System.out.println("NUll");
